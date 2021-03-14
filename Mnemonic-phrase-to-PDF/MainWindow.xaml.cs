@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mnemonic_phrase_to_PDF.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace Mnemonic_phrase_to_PDF
         public MainWindow()
         {
             InitializeComponent();
+            for (int i = 1; i <= 12; i++)
+                listView.Items.Add(new WordUC(i));
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)

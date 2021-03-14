@@ -19,11 +19,7 @@
             GlassFrameThickness="1">
         </shell:WindowChrome>
     </shell:WindowChrome.WindowChrome>
-    <Window.Resources>
-        <SolidColorBrush x:Key="WindowsBrush" Color="#383e56" />
-        <SolidColorBrush x:Key="BackgroundBrush" Color="#F3F0F4" />
-        <SolidColorBrush x:Key="TextBrush" Color="#F8E7A2" />
-    </Window.Resources>
+  
     <Border BorderThickness="0">
         <Border.Style>
             <Style TargetType="{x:Type Border}">
@@ -98,8 +94,25 @@
                                 <TextBox VerticalAlignment="Bottom" Margin="5" Width="200" Text="12" TextAlignment="Center" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="{x:Null}"/>
                                 <Button Content="✓" Width="25" Height="25"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
                             </StackPanel>
-                            <ListView Grid.Row="2" Margin="12" Background="{x:Null}">
-                                
+                            <ListView x:Name="listView" Grid.Row="2" Margin="12" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                                    <Border x:Name="RootBorder" Padding="10">
+                                                        <ContentPresenter/>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                             </ListView>
                         </Grid>
                     </Border>

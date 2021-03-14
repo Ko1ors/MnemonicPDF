@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="WindowsBrush" Color="#383e56" />
+            <SolidColorBrush x:Key="BackgroundBrush" Color="#F3F0F4" />
+            <SolidColorBrush x:Key="TextBrush" Color="#F8E7A2" />
     </Application.Resources>
 </Application>
