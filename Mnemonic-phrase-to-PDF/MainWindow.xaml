@@ -22,6 +22,7 @@
     <Window.Resources>
         <SolidColorBrush x:Key="WindowsBrush" Color="#383e56" />
         <SolidColorBrush x:Key="BackgroundBrush" Color="#F3F0F4" />
+        <SolidColorBrush x:Key="TextBrush" Color="#F8E7A2" />
     </Window.Resources>
     <Border BorderThickness="0">
         <Border.Style>
@@ -42,8 +43,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"/>
-                <RowDefinition Height="326*"/>
-                <shell:RowDefinition Height="83*"/>
+                <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
             <DockPanel Height="25" Background="{StaticResource WindowsBrush}">
                 <TextBlock Text="MNEMONIC PHRASE TO PDF" Foreground="White" Margin="5" FontFamily="Arial" FontSize="15"/>
@@ -52,15 +52,29 @@
                     <Button Content="✕" Width="25" Height="25" Click="ExitButton_Click" Background="{x:Null}"  WindowChrome.IsHitTestVisibleInChrome="True" Foreground="White" BorderBrush="{x:Null}" />
                 </StackPanel>
             </DockPanel>
-            <Border Grid.Row="1" BorderThickness="2,0,2,2" BorderBrush="{StaticResource WindowsBrush}" Background="{StaticResource BackgroundBrush}" shell:Grid.RowSpan="2">
+            <Border Grid.Row="1" BorderThickness="2,0,2,2" Background="{StaticResource BackgroundBrush}" BorderBrush="{StaticResource WindowsBrush}" shell:Grid.RowSpan="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="80*"/>
                     </Grid.RowDefinitions>
+                    <Border Grid.Row="1" Margin="5" Background="{StaticResource WindowsBrush}" CornerRadius="25">
+                        <Grid >
+                            <TextBlock Text="COIN NAME" HorizontalAlignment="Center" Margin="5" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black"/>
+                            <TextBox VerticalAlignment="Bottom" Margin="5" Width="200" Text="input" TextAlignment="Center"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="{x:Null}"/>
+                        </Grid>
+                    </Border>
+                    <Border Grid.Row="1" Grid.Column="1" Margin="5" Background="{StaticResource WindowsBrush}" CornerRadius="25">
+                        <Grid >
+                            <TextBlock Text="COIN ICON" HorizontalAlignment="Center" Margin="5" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black"/>
+                            <Button VerticalAlignment="Bottom" Margin="5" Content="Open" Width="150"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
+                        </Grid>
+                    </Border>
                 </Grid>
             </Border>
         </Grid>
