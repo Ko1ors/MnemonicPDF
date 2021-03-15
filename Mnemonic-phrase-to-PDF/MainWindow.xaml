@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF"
+        xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF" xmlns:models="clr-namespace:Mnemonic_phrase_to_PDF.Models"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="650">
     <shell:WindowChrome.WindowChrome>
@@ -20,6 +20,9 @@
         </shell:WindowChrome>
     </shell:WindowChrome.WindowChrome>
 
+    <Window.Resources>
+        <models:CoinModel x:Key="coinModel" Name="Coin" WordCount="12"/>
+    </Window.Resources>
 
     <Border BorderThickness="0">
         <Border.Style>
@@ -56,7 +59,7 @@
                         <RowDefinition Height="10*"/>
                     </Grid.RowDefinitions>
                     <ScrollViewer>
-                        <Grid>
+                        <Grid DataContext="{StaticResource coinModel}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="1*"/>
@@ -70,7 +73,7 @@
                             <Border Grid.Row="1" Margin="5" Background="{StaticResource WindowsBrush}" CornerRadius="25">
                                 <Grid >
                                     <TextBlock Text="COIN NAME" HorizontalAlignment="Center" Margin="5" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black"/>
-                                    <TextBox VerticalAlignment="Bottom" Margin="5" Width="200" Text="input" TextAlignment="Center"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="{x:Null}"/>
+                                    <TextBox VerticalAlignment="Bottom" Margin="5" Width="200" Text="{Binding Name}" TextAlignment="Center"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="{x:Null}"/>
                                 </Grid>
                             </Border>
 
@@ -97,8 +100,8 @@
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="WORD COUNT" HorizontalAlignment="Center" Margin="5" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black"/>
                                     <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
-                                        <TextBox VerticalAlignment="Bottom" Margin="5" Width="200" Text="12" TextAlignment="Center" Foreground="{StaticResource TextBrush}" FontSize="18" FontFamily="Arial Black" Background="{x:Null}"/>
-                                        <Button Content="✓" Width="25" Height="25" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
+                                        <TextBox VerticalAlignment="Bottom" Margin="5" Width="200" Text="{Binding WordCount}" TextAlignment="Center" Foreground="{StaticResource TextBrush}" FontSize="18" FontFamily="Arial Black" Background="{x:Null}"/>
+                                        <Button Content="✓" Click="Button_Click" Width="25" Height="25" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
                                     </StackPanel>
                                     <ListView x:Name="listView" Grid.Row="2" Height="90" Margin="12" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}">
                                         <ListBox.ItemsPanel>
