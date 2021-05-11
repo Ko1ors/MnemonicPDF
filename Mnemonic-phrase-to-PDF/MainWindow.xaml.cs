@@ -1,6 +1,5 @@
 ﻿using Mnemonic_phrase_to_PDF.Models;
 using System.Windows;
-using System.Linq;
 
 namespace Mnemonic_phrase_to_PDF
 {
@@ -9,7 +8,8 @@ namespace Mnemonic_phrase_to_PDF
     /// </summary>
     public partial class MainWindow : Window
     {
-        CoinModel coinModel;
+        private CoinModel coinModel;
+        private PDFPage PDFPage;
 
         public MainWindow()
         {
@@ -34,17 +34,30 @@ namespace Mnemonic_phrase_to_PDF
             UpdateWordCount();
         }
 
+        private void GeneratePDFClick(object sender, RoutedEventArgs e)
+        {
+            PDFPage = new PDFPage();
+        }
+
+        private void PreviewClick(object sender, RoutedEventArgs e)
+        {
+            if (PDFPage != null)
+            {
+                new PDFPreviewWindow(PDFPage).Show();
+            }
+        }
+
         private void UpdateWordCount()
         {
             if (coinModel.WordCount > listView.Items.Count)
             {
-                for (int i = listView.Items.Count+1; i <= coinModel.WordCount; i++)
+                for (int i = listView.Items.Count + 1; i <= coinModel.WordCount; i++)
                     listView.Items.Add(new WordUC(i));
             }
             else if (coinModel.WordCount < listView.Items.Count)
             {
                 for (int i = listView.Items.Count; i > coinModel.WordCount; i--)
-                    listView.Items.RemoveAt(i-1);
+                    listView.Items.RemoveAt(i - 1);
             }
         }
     }

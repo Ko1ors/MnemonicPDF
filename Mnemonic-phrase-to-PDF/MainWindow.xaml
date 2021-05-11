@@ -129,8 +129,8 @@
                     </ScrollViewer>
                     <Border Grid.Row="1" Background="{StaticResource WindowsBrush}" CornerRadius="15,15,0,0">
                         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                            <Button VerticalAlignment="Bottom" Margin="5" Content="Generate PDF" Width="150"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
-                            <Button VerticalAlignment="Bottom" Margin="5" Content="Preview" Width="150"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
+                            <Button VerticalAlignment="Bottom" Margin="5" Click="GeneratePDFClick" Content="Generate PDF" Width="150"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
+                            <Button VerticalAlignment="Bottom" Margin="5" Click="PreviewClick" Content="Preview" Width="150"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
                             <Button VerticalAlignment="Bottom" Margin="5" Content="Save" Width="150"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
                         </StackPanel>
                     </Border>
