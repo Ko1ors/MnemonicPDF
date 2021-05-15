@@ -18,7 +18,7 @@ namespace Mnemonic_phrase_to_PDF.Models
 
         private int wordCount;
 
-        public List<string> Words { get; set; } = new List<string>();
+        public List<WordModel> Words { get; set; } = new List<WordModel>();
 
         public string Name
         {

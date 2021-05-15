@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mnemonic_phrase_to_PDF.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,12 @@ namespace Mnemonic_phrase_to_PDF
         public PDFPage()
         {
             InitializeComponent();
+        }
+
+        public PDFPage(CoinModel coin)
+        {
+            InitializeComponent();
+            DataContext = coin;
         }
     }
 }

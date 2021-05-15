@@ -36,7 +36,7 @@ namespace Mnemonic_phrase_to_PDF
 
         private void GeneratePDFClick(object sender, RoutedEventArgs e)
         {
-            PDFPage = new PDFPage();
+            PDFPage = new PDFPage(coinModel);
         }
 
         private void PreviewClick(object sender, RoutedEventArgs e)

@@ -3,12 +3,42 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF"
+      xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF" xmlns:models="clr-namespace:Mnemonic_phrase_to_PDF.Models" d:DataContext="{d:DesignInstance Type=models:CoinModel}"
       mc:Ignorable="d" 
       Height="29.7cm" Width="21cm"
-      Title="PDFPage">
+      Title="PDFPage" Background="White">
 
     <Grid>
-        <TextBlock Text="TEST" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="77" FontFamily="Arial Black"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="50*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <DockPanel>
+            <Image Source="{Binding Icon}" Margin="50,0,0,0" DockPanel.Dock="Left" Width="100" Height="100"/>
+            <TextBlock Margin="25,0,0,0" DockPanel.Dock="Left" Text="{Binding Name, FallbackValue=Bitcoin}" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" FontSize="50" FontFamily="Arial Black"/>
+        </DockPanel>
+
+        <ListView Grid.Row="1" x:Name="listView" ItemsSource="{Binding Words}" Margin="10,0,10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}" BorderBrush="{x:Null}">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel />
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Border x:Name="RootBorder" Padding="10">
+                                    <ContentPresenter/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+        
     </Grid>
 </Page>
