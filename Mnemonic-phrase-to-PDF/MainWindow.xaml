@@ -106,9 +106,10 @@
                                     <ListView x:Name="listView" ItemsSource="{Binding Words}" Height="130" Grid.Row="2" Margin="12" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}">
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
-                                                <WrapPanel />
+                                                <WrapPanel/>
                                             </ItemsPanelTemplate>
                                         </ListBox.ItemsPanel>
+                                        
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
                                                 <Setter Property="Template">

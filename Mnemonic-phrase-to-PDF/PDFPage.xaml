@@ -38,6 +38,13 @@
                     </Setter>
                 </Style>
             </ListView.ItemContainerStyle>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <local:WordUC Word="{Binding Word}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
         </ListView>
         
     </Grid>
