@@ -14,7 +14,7 @@ namespace Mnemonic_phrase_to_PDF.Models
 
         private Image icon;
 
-        private Color color;
+        private System.Windows.Media.Brush color;
 
         private int wordCount;
 
@@ -54,7 +54,7 @@ namespace Mnemonic_phrase_to_PDF.Models
 
         }
 
-        public Color Color
+        public System.Windows.Media.Brush Color
         {
             get
             {

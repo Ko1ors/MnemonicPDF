@@ -6,46 +6,63 @@
       xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF" xmlns:models="clr-namespace:Mnemonic_phrase_to_PDF.Models" d:DataContext="{d:DesignInstance Type=models:CoinModel}"
       mc:Ignorable="d" 
       Height="29.7cm" Width="21cm"
-      Title="PDFPage" Background="White">
-
+      Title="PDFPage" Background="White" x:Name="page">
+    <Page.Resources>
+        <SolidColorBrush x:Key="PageBrush" Color="{Binding Color}"/>
+    </Page.Resources>
+    
+    <Border BorderBrush="Black" BorderThickness="1">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
+        
         <DockPanel>
             <Image Source="{Binding Icon}" Margin="50,0,0,0" DockPanel.Dock="Left" Width="100" Height="100"/>
             <TextBlock Margin="25,0,0,0" DockPanel.Dock="Left" Text="{Binding Name, FallbackValue=Bitcoin}" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" FontSize="50" FontFamily="Arial Black"/>
         </DockPanel>
 
-        <ListView Grid.Row="1" x:Name="listView" ItemsSource="{Binding Words}" Margin="10,0,10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}" BorderBrush="{x:Null}">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel />
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                <Border x:Name="RootBorder" Padding="10">
-                                    <ContentPresenter/>
-                                </Border>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </ListView.ItemContainerStyle>
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <local:WordUC Word="{Binding Word}"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-
-        </ListView>
+            <Rectangle Grid.Row="1" Fill="Black" Height="1" VerticalAlignment="Top"/>
         
-    </Grid>
+            <ListView Grid.Row="1" x:Name="listView" ItemsSource="{Binding Words}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}" BorderBrush="{x:Null}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border x:Name="RootBorder" Padding="10,15,10,15">
+                                        <ContentPresenter/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Border BorderThickness="1" BorderBrush="{Binding ElementName=page, Path=DataContext.Color, FallbackValue=Black}" CornerRadius="5">
+                            <TextBlock Margin="10" VerticalAlignment="Center" Width="140" Foreground="{Binding ElementName=page, Path=DataContext.Color}" FontSize="20" FontFamily="Arial Black">
+                                    <Run Text="{Binding Number}"/><Run Text="."/>
+                                    <Run Text="{Binding Word}"/>
+                            </TextBlock>
+                        </Border>
+                            
+                        
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+            <Rectangle Grid.Row="1" Fill="Black" Height="1" VerticalAlignment="Bottom"/>
+        </Grid>
+    </Border>
 </Page>
