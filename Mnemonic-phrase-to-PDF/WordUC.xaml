@@ -9,7 +9,7 @@
     <UserControl.Resources>
         <models:WordModel x:Key="WordModel"/>
     </UserControl.Resources>
-    <StackPanel DataContext="{StaticResource WordModel}" Orientation="Horizontal">
+    <StackPanel Orientation="Horizontal">
         <TextBlock Text="{Binding Number}" VerticalAlignment="Center" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black"/>
         <TextBox Text="{Binding Word}" Width="100" Margin="5" TextAlignment="Center" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="{x:Null}"/>
     </StackPanel>

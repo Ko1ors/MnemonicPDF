@@ -19,13 +19,17 @@ namespace Mnemonic_phrase_to_PDF
     /// </summary>
     public partial class WordUC : UserControl
     {
-        public WordModel wordModel;
+        public static readonly DependencyProperty WordProperty = DependencyProperty.Register("Word", typeof(string), typeof(WordUC), new FrameworkPropertyMetadata("Word"));
 
-        public WordUC(int number)
+        public WordModel Word
+        {
+            get { return GetValue(WordProperty) as WordModel; }
+            set { SetValue(WordProperty, value); }
+        }
+
+        public WordUC()
         {
             InitializeComponent();
-            wordModel = Resources["WordModel"] as WordModel;
-            wordModel.Number = number;
         }
     }
 }

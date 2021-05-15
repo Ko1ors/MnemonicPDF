@@ -103,7 +103,7 @@
                                         <TextBox VerticalAlignment="Bottom" Margin="5" Width="200" Text="{Binding WordCount}" TextAlignment="Center" Foreground="{StaticResource TextBrush}" FontSize="18" FontFamily="Arial Black" Background="{x:Null}"/>
                                         <Button Content="✓" Click="Button_Click" Width="25" Height="25" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
                                     </StackPanel>
-                                    <ListView x:Name="listView" Height="130" Grid.Row="2" Margin="12" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}">
+                                    <ListView x:Name="listView" ItemsSource="{Binding Words}" Height="130" Grid.Row="2" Margin="12" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}">
                                         <ListBox.ItemsPanel>
                                             <ItemsPanelTemplate>
                                                 <WrapPanel />
@@ -122,6 +122,13 @@
                                                 </Setter>
                                             </Style>
                                         </ListView.ItemContainerStyle>
+
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <local:WordUC Word="{Binding Word}"/>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+
                                     </ListView>
                                 </Grid>
                             </Border>

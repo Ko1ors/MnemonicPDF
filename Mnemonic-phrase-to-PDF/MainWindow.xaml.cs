@@ -15,8 +15,7 @@ namespace Mnemonic_phrase_to_PDF
         {
             InitializeComponent();
             coinModel = Resources["coinModel"] as CoinModel;
-            for (int i = 1; i <= coinModel.WordCount; i++)
-                listView.Items.Add(new WordUC(i));
+            
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -49,16 +48,17 @@ namespace Mnemonic_phrase_to_PDF
 
         private void UpdateWordCount()
         {
-            if (coinModel.WordCount > listView.Items.Count)
+            if (coinModel.WordCount > coinModel.Words.Count)
             {
-                for (int i = listView.Items.Count + 1; i <= coinModel.WordCount; i++)
-                    listView.Items.Add(new WordUC(i));
+                for (int i = coinModel.Words.Count + 1; i <= coinModel.WordCount; i++)
+                    coinModel.Words.Add(new WordModel() { Number = i, Word = "test"});
             }
-            else if (coinModel.WordCount < listView.Items.Count)
+            else if (coinModel.WordCount < coinModel.Words.Count)
             {
-                for (int i = listView.Items.Count; i > coinModel.WordCount; i--)
-                    listView.Items.RemoveAt(i - 1);
+                for (int i = coinModel.Words.Count; i > coinModel.WordCount; i--)
+                    coinModel.Words.RemoveAt(i - 1);
             }
+            listView.Items.Refresh();
         }
     }
 }
