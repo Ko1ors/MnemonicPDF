@@ -1,5 +1,6 @@
 ﻿using Mnemonic_phrase_to_PDF.Models;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Mnemonic_phrase_to_PDF
 {
@@ -43,6 +44,18 @@ namespace Mnemonic_phrase_to_PDF
             if (PDFPage != null)
             {
                 new PDFPreviewWindow(PDFPage).Show();
+            }
+        }
+
+        private void SaveClick(object sender, RoutedEventArgs e)
+        {
+            if (PDFPage != null)
+            {
+                PrintDialog dialog = new PrintDialog();
+                if(dialog.ShowDialog() == true)
+                {
+                    dialog.PrintVisual(PDFPage.grid, "PDF phrase");
+                }
             }
         }
 
