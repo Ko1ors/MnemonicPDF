@@ -16,7 +16,7 @@ namespace Mnemonic_phrase_to_PDF
         {
             InitializeComponent();
             coinModel = Resources["coinModel"] as CoinModel;
-            
+
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -32,6 +32,20 @@ namespace Mnemonic_phrase_to_PDF
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             UpdateWordCount();
+        }
+
+        private void PasteClick(object sender, RoutedEventArgs e)
+        {
+            if (Clipboard.ContainsText(TextDataFormat.Text))
+            {
+                var words = Clipboard.GetText(TextDataFormat.Text).Split(" ");
+                coinModel.WordCount = words.Length;
+                UpdateWordCount();
+                for (int i = 0; i < words.Length; i++)
+                {
+                    coinModel.Words[i].Word = words[i];
+                }
+            }
         }
 
         private void GeneratePDFClick(object sender, RoutedEventArgs e)
@@ -52,7 +66,7 @@ namespace Mnemonic_phrase_to_PDF
             if (PDFPage != null)
             {
                 PrintDialog dialog = new PrintDialog();
-                if(dialog.ShowDialog() == true)
+                if (dialog.ShowDialog() == true)
                 {
                     dialog.PrintVisual(PDFPage.grid, "PDF phrase");
                 }
@@ -64,7 +78,7 @@ namespace Mnemonic_phrase_to_PDF
             if (coinModel.WordCount > coinModel.Words.Count)
             {
                 for (int i = coinModel.Words.Count + 1; i <= coinModel.WordCount; i++)
-                    coinModel.Words.Add(new WordModel() { Number = i, Word = "test"});
+                    coinModel.Words.Add(new WordModel() { Number = i });
             }
             else if (coinModel.WordCount < coinModel.Words.Count)
             {
