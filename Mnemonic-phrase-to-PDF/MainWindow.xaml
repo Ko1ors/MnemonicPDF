@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF" xmlns:models="clr-namespace:Mnemonic_phrase_to_PDF.Models"
+        xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF" xmlns:models="clr-namespace:Mnemonic_phrase_to_PDF.Models" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:converters="clr-namespace:Mnemonic_phrase_to_PDF.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="600" MinHeight="300" MinWidth="510">
     <shell:WindowChrome.WindowChrome>
@@ -22,6 +22,7 @@
 
     <Window.Resources>
         <models:CoinModel x:Key="coinModel" Name="Coin" WordCount="12" Color="Gold"/>
+        <converters:BrushToColorConverter x:Key="converter"/>
     </Window.Resources>
 
     <Border BorderThickness="0">
@@ -88,7 +89,7 @@
                             <Border Grid.Row="2" Grid.ColumnSpan="2" Margin="5" MaxWidth="300" Background="{StaticResource WindowsBrush}" MinWidth="230" MinHeight="55" CornerRadius="25">
                                 <Grid>
                                     <TextBlock Text="COIN COLOR" HorizontalAlignment="Center" Margin="5" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black"/>
-                                    <Button VerticalAlignment="Bottom" Margin="5" Content="Select" Width="150"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
+                                    <xctk:ColorPicker VerticalAlignment="Bottom" Margin="5" Width="150" FontFamily="Arial Black" SelectedColor="{Binding Color, Converter={StaticResource converter}}" Background="#FF3B5274" Foreground="{StaticResource TextBrush}" BorderBrush="Black" DropDownBackground="{StaticResource WindowsBrush}"/>
                                 </Grid>
                             </Border>
 
