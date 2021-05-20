@@ -1,6 +1,10 @@
 ﻿using Mnemonic_phrase_to_PDF.Models;
+using QRCoder;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +23,7 @@ namespace Mnemonic_phrase_to_PDF
     /// </summary>
     public partial class PDFPage : Page
     {
+
         public PDFPage()
         {
             InitializeComponent();
@@ -28,6 +33,40 @@ namespace Mnemonic_phrase_to_PDF
         {
             InitializeComponent();
             DataContext = coin;
+            Title = ToString();
+
+            if (coin.GenerateQRForAddress)
+            {
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                var qrCode = new QRCode(qrGenerator.CreateQrCode(coin.Address,QRCodeGenerator.ECCLevel.Q));
+                qrAddress.Source = ConvertToBitmapImage(qrCode.GetGraphic(20));
+            }
+            if (coin.GenerateQRForPhrase)
+            {
+                QRCodeGenerator qrGenerator = new QRCodeGenerator();
+                var qrCode = new QRCode(qrGenerator.CreateQrCode(string.Join(" ", coin.Words), QRCodeGenerator.ECCLevel.Q));
+                qrPhrase.Source = ConvertToBitmapImage(qrCode.GetGraphic(10));
+            }
+        }
+
+        private static BitmapImage ConvertToBitmapImage(Bitmap bitmap)
+        {
+            using (MemoryStream memory = new MemoryStream())
+            {
+                bitmap.Save(memory, ImageFormat.Png);
+                memory.Position = 0;
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.StreamSource = memory;
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                return bitmapImage;
+            }
+        }
+
+        public override string ToString()
+        {
+            return DataContext?.ToString();
         }
     }
 }

@@ -3,20 +3,21 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF" xmlns:models="clr-namespace:Mnemonic_phrase_to_PDF.Models" d:DataContext="{d:DesignInstance Type=models:CoinModel}"
+      xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF" xmlns:models="clr-namespace:Mnemonic_phrase_to_PDF.Models" xmlns:local1="clr-namespace:Mnemonic_phrase_to_PDF.Converters" d:DataContext="{d:DesignInstance Type=models:CoinModel}"
       mc:Ignorable="d" 
       Height="29.7cm" Width="21cm"
       Title="PDFPage" Background="White" x:Name="page">
     <Page.Resources>
         <SolidColorBrush x:Key="PageBrush" Color="{Binding Color}"/>
+        <local1:BoolToVisibilityConverter x:Key="converter"/>
     </Page.Resources>
     
     <Border BorderBrush="Black" BorderThickness="1">
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="8*"/>
             <RowDefinition Height="50*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
         
         <DockPanel>
@@ -63,6 +64,24 @@
             </ListView>
 
             <Rectangle Grid.Row="1" Fill="Black" Height="1" VerticalAlignment="Bottom"/>
+
+            <DockPanel Grid.Row="2">
+                <StackPanel Visibility="{Binding GenerateQRForAddress, Converter={StaticResource converter}}" Margin="50,0,0,0">
+                    <TextBlock TextAlignment="Center" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" Width="250" Height="62" TextWrapping="Wrap" FontSize="30" FontFamily="Arial Black">
+                        <Run Text="Address"/>
+                        <LineBreak/>
+                        <Run Text="{Binding Address}" FontSize="12"/>
+                    </TextBlock>
+                    <Separator Opacity="0" Height="5"/>
+                    <Image x:Name="qrAddress" Width="150" Height="150"/>
+                </StackPanel>
+
+                <StackPanel Visibility="{Binding GenerateQRForPhrase, Converter={StaticResource converter}}" Margin="0,0,50,0" HorizontalAlignment="Right">
+                    <TextBlock Text="Seed phrase" TextAlignment="Center" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" Width="250" FontSize="30" FontFamily="Arial Black"/>
+                    <Image x:Name="qrPhrase" Width="190" Height="190"/>
+                </StackPanel>
+                
+            </DockPanel>
         </Grid>
     </Border>
 </Page>

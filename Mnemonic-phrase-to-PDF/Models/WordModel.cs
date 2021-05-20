@@ -55,5 +55,10 @@ namespace Mnemonic_phrase_to_PDF.Models
                 handler(this, new PropertyChangedEventArgs(info));
             }
         }
+
+        public override string ToString()
+        {
+            return Word;
+        }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Controls;
 
 namespace Mnemonic_phrase_to_PDF.Models
 {
@@ -17,6 +15,12 @@ namespace Mnemonic_phrase_to_PDF.Models
         private System.Windows.Media.Brush color;
 
         private int wordCount;
+
+        private string address;
+
+        private bool generateQRForAddress;
+
+        private bool generateQRForPhrase;
 
 
         public List<WordModel> Words { get; set; } = new List<WordModel>();
@@ -35,7 +39,6 @@ namespace Mnemonic_phrase_to_PDF.Models
                     OnPropertyChanged("Name");
                 }
             }
-
         }
 
         public Uri Icon
@@ -52,7 +55,6 @@ namespace Mnemonic_phrase_to_PDF.Models
                     OnPropertyChanged("Icon");
                 }
             }
-
         }
 
         public System.Windows.Media.Brush Color
@@ -69,7 +71,6 @@ namespace Mnemonic_phrase_to_PDF.Models
                     OnPropertyChanged("Color");
                 }
             }
-
         }
 
         public int WordCount
@@ -86,12 +87,60 @@ namespace Mnemonic_phrase_to_PDF.Models
                     OnPropertyChanged("WordCount");
                 }
             }
-
         }
+
+        public string Address
+        {
+            get
+            {
+                return address;
+            }
+            set
+            {
+                if (address != value)
+                {
+                    address = value;
+                    OnPropertyChanged("Address");
+                }
+            }
+        }
+
+        public bool GenerateQRForAddress
+        {
+            get
+            {
+                return generateQRForAddress;
+            }
+            set
+            {
+                if (generateQRForAddress != value)
+                {
+                    generateQRForAddress = value;
+                    OnPropertyChanged("GenerateQRForAddress");
+                }
+            }
+        }
+
+        public bool GenerateQRForPhrase
+        {
+            get
+            {
+                return generateQRForPhrase;
+            }
+            set
+            {
+                if (generateQRForPhrase != value)
+                {
+                    generateQRForPhrase = value;
+                    OnPropertyChanged("GenerateQRForPhrase");
+                }
+            }
+        }
+
 
         public CoinModel Clone()
         {
-            return new CoinModel() { Words = Words, WordCount = WordCount, Name = Name, Color = Color, Icon = Icon };
+            return new CoinModel() { Words = Words, WordCount = WordCount, Name = Name, Color = Color, Icon = Icon, GenerateQRForPhrase = GenerateQRForPhrase, GenerateQRForAddress = GenerateQRForAddress, Address = Address };
         }
 
         private void OnPropertyChanged(String info)
@@ -101,6 +150,11 @@ namespace Mnemonic_phrase_to_PDF.Models
             {
                 handler(this, new PropertyChangedEventArgs(info));
             }
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} - {WordCount} words";
         }
     }
 }
