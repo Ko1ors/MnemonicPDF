@@ -1,4 +1,6 @@
-﻿using Mnemonic_phrase_to_PDF.Models;
+﻿using Microsoft.Win32;
+using Mnemonic_phrase_to_PDF.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -28,6 +30,17 @@ namespace Mnemonic_phrase_to_PDF
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void SelectIconClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Select an icon";
+            dialog.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +"JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +"Portable Network Graphic (*.png)|*.png";
+            if (dialog.ShowDialog() == true)
+            {
+                coinModel.Icon = new Uri(dialog.FileName);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

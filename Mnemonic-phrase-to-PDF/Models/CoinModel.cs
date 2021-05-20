@@ -12,7 +12,7 @@ namespace Mnemonic_phrase_to_PDF.Models
 
         private string name;
 
-        private Image icon;
+        private Uri icon;
 
         private System.Windows.Media.Brush color;
 
@@ -37,7 +37,7 @@ namespace Mnemonic_phrase_to_PDF.Models
 
         }
 
-        public Image Icon
+        public Uri Icon
         {
             get
             {

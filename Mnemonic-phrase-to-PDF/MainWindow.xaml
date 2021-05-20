@@ -82,7 +82,7 @@
                             <Border Grid.Row="1" Grid.Column="1" Margin="5" Background="{StaticResource WindowsBrush}" MaxWidth="300" MinWidth="230" MinHeight="55" CornerRadius="25">
                                 <Grid>
                                     <TextBlock Text="COIN ICON" HorizontalAlignment="Center" Margin="5" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black"/>
-                                    <Button VerticalAlignment="Bottom" Margin="5" Content="Open" Width="150"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
+                                    <Button VerticalAlignment="Bottom" Margin="5" Content="Select" Click="SelectIconClick" Width="150"  Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
                                 </Grid>
                             </Border>
 
