@@ -10,13 +10,14 @@ namespace Mnemonic_phrase_to_PDF
     public partial class MainWindow : Window
     {
         private CoinModel coinModel;
-        private PDFPage PDFPage;
+        private PDFPreviewWindow window;
+
 
         public MainWindow()
         {
             InitializeComponent();
             coinModel = Resources["coinModel"] as CoinModel;
-
+            window = new PDFPreviewWindow();
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -50,25 +51,26 @@ namespace Mnemonic_phrase_to_PDF
 
         private void GeneratePDFClick(object sender, RoutedEventArgs e)
         {
-            PDFPage = new PDFPage(coinModel);
+            window.SetPage(new PDFPage(coinModel));
         }
 
         private void PreviewClick(object sender, RoutedEventArgs e)
         {
-            if (PDFPage != null)
+            if (window.frame.Content != null)
             {
-                new PDFPreviewWindow(PDFPage).Show();
+                window.Show();
             }
         }
 
         private void SaveClick(object sender, RoutedEventArgs e)
         {
-            if (PDFPage != null)
+            if (window.frame.Content != null)
             {
                 PrintDialog dialog = new PrintDialog();
+                var page = window.frame.Content as PDFPage;
                 if (dialog.ShowDialog() == true)
                 {
-                    dialog.PrintVisual(PDFPage.grid, "PDF phrase");
+                    dialog.PrintVisual(page.grid, "PDF phrase");
                 }
             }
         }
