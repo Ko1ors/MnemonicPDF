@@ -18,6 +18,7 @@ namespace Mnemonic_phrase_to_PDF.Models
 
         private int wordCount;
 
+
         public List<WordModel> Words { get; set; } = new List<WordModel>();
 
         public string Name
@@ -86,6 +87,11 @@ namespace Mnemonic_phrase_to_PDF.Models
                 }
             }
 
+        }
+
+        public CoinModel Clone()
+        {
+            return new CoinModel() { Words = Words, WordCount = WordCount, Name = Name, Color = Color, Icon = Icon };
         }
 
         private void OnPropertyChanged(String info)

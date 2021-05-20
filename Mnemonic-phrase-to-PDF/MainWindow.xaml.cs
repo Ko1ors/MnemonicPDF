@@ -64,7 +64,7 @@ namespace Mnemonic_phrase_to_PDF
 
         private void GeneratePDFClick(object sender, RoutedEventArgs e)
         {
-            window.SetPage(new PDFPage(coinModel));
+            window.SetPage(new PDFPage(coinModel.Clone()));
         }
 
         private void PreviewClick(object sender, RoutedEventArgs e)
