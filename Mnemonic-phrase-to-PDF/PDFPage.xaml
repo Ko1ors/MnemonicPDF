@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         
         <DockPanel>
-            <Image Source="{Binding Icon}" Margin="50,0,0,0" DockPanel.Dock="Left" Width="100" Height="100"/>
+            <Image Source="{Binding Icon}" RenderOptions.BitmapScalingMode="HighQuality" Margin="50,0,0,0" DockPanel.Dock="Left" Width="100" Height="100"/>
             <TextBlock Margin="25,0,0,0" DockPanel.Dock="Left" Text="{Binding Name, FallbackValue=Bitcoin}" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" FontSize="50" FontFamily="Arial Black"/>
         </DockPanel>
 
@@ -50,7 +50,7 @@
                     <DataTemplate>
 
                         <Border BorderThickness="1" BorderBrush="{Binding ElementName=page, Path=DataContext.Color, FallbackValue=Black}" CornerRadius="5">
-                            <TextBlock Margin="10" VerticalAlignment="Center" Width="140" Foreground="{Binding ElementName=page, Path=DataContext.Color}" FontSize="20" FontFamily="Arial Black">
+                            <TextBlock Margin="10" VerticalAlignment="Center" Width="148" Foreground="{Binding ElementName=page, Path=DataContext.Color}" FontSize="20" FontFamily="Arial Black">
                                     <Run Text="{Binding Number}"/><Run Text="."/>
                                     <Run Text="{Binding Word}"/>
                             </TextBlock>
