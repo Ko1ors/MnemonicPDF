@@ -35,13 +35,13 @@ namespace Mnemonic_phrase_to_PDF
             DataContext = coin;
             Title = ToString();
 
-            if (coin.GenerateQRForAddress)
+            if (coin.GenerateQRForAddress && !string.IsNullOrWhiteSpace(coin.Address))
             {
                 QRCodeGenerator qrGenerator = new QRCodeGenerator();
                 var qrCode = new QRCode(qrGenerator.CreateQrCode(coin.Address,QRCodeGenerator.ECCLevel.Q));
                 qrAddress.Source = ConvertToBitmapImage(qrCode.GetGraphic(20));
             }
-            if (coin.GenerateQRForPhrase)
+            if (coin.GenerateQRForPhrase && coin.Words != null && coin.Words.Count > 0)
             {
                 QRCodeGenerator qrGenerator = new QRCodeGenerator();
                 var qrCode = new QRCode(qrGenerator.CreateQrCode(string.Join(" ", coin.Words), QRCodeGenerator.ECCLevel.Q));
