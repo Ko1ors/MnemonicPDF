@@ -20,6 +20,13 @@ namespace Mnemonic_phrase_to_PDF
             InitializeComponent();
             coinModel = Resources["coinModel"] as CoinModel;
             window = new PDFPreviewWindow();
+            window.Closing += Window_Closing;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            (sender as Window).Visibility = Visibility.Hidden;
+            e.Cancel = true;
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
