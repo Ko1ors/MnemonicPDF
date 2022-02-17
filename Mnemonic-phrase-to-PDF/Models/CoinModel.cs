@@ -137,6 +137,8 @@ namespace Mnemonic_phrase_to_PDF.Models
             }
         }
 
+        public bool AddressIsSetted => !string.IsNullOrWhiteSpace(Address);
+
 
         public CoinModel Clone()
         {
