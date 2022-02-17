@@ -67,18 +67,17 @@
 
             <DockPanel Grid.Row="2">
                 <StackPanel Visibility="{Binding AddressIsSetted, Converter={StaticResource converter}}" Margin="50,0,0,0">
-                    <TextBlock TextAlignment="Center" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" Width="250" Height="62" TextWrapping="Wrap" FontSize="30" FontFamily="Arial Black">
+                    <TextBlock TextAlignment="Center" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" Width="250" Height="55" MaxHeight="55" TextWrapping="Wrap" FontSize="25" FontFamily="Arial Black">
                         <Run Text="Address"/>
                         <LineBreak/>
                         <Run Text="{Binding Address}" FontSize="12"/>
                     </TextBlock>
-                    <Separator Opacity="0" Height="5"/>
-                    <Image x:Name="qrAddress" Width="150" Height="150"/>
+                    <Image x:Name="qrAddress" Width="160" Height="160"/>
                 </StackPanel>
 
                 <StackPanel Visibility="{Binding GenerateQRForPhrase, Converter={StaticResource converter}}" Margin="0,0,50,0" HorizontalAlignment="Right">
-                    <TextBlock Text="Seed phrase" TextAlignment="Center" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" Width="250" FontSize="30" FontFamily="Arial Black"/>
-                    <Image x:Name="qrPhrase" Width="190" Height="190"/>
+                    <TextBlock Text="Seed phrase" TextAlignment="Center" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" Width="250" Height="55" MaxHeight="55" FontSize="25" FontFamily="Arial Black"/>
+                    <Image x:Name="qrPhrase" Width="160" Height="160"/>
                 </StackPanel>
                 
             </DockPanel>
