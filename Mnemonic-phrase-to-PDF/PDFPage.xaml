@@ -5,82 +5,84 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF" xmlns:models="clr-namespace:Mnemonic_phrase_to_PDF.Models" xmlns:local1="clr-namespace:Mnemonic_phrase_to_PDF.Converters" d:DataContext="{d:DesignInstance Type=models:CoinModel}"
       mc:Ignorable="d" 
-      Height="29.7cm" Width="21cm"
+      Height="{Binding SelectedPageFormat.FormatHeight, Converter={StaticResource sizeConverter}}" Width="{Binding SelectedPageFormat.FormatWidth, Converter={StaticResource sizeConverter}}"
       Title="PDFPage" Background="White" x:Name="page">
     <Page.Resources>
         <SolidColorBrush x:Key="PageBrush" Color="{Binding Color}"/>
         <local1:BoolToVisibilityConverter x:Key="converter"/>
     </Page.Resources>
-    
-    <Border BorderBrush="Black" BorderThickness="1">
-    <Grid x:Name="grid">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="15*"/>
-        </Grid.RowDefinitions>
-        
-        <DockPanel>
-            <Image Source="{Binding Icon}" RenderOptions.BitmapScalingMode="HighQuality" Margin="50,0,0,0" DockPanel.Dock="Left" Width="100" Height="100"/>
-            <TextBlock Margin="25,0,0,0" DockPanel.Dock="Left" Text="{Binding Name, FallbackValue=Bitcoin}" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" FontSize="50" FontFamily="Arial Black"/>
-        </DockPanel>
 
-            <Rectangle Grid.Row="1" Fill="Black" Height="1" VerticalAlignment="Top"/>
-        
-            <ListView Grid.Row="1" x:Name="listView" ItemsSource="{Binding Words}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}" BorderBrush="{x:Null}">
-                <ListBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </ListBox.ItemsPanel>
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
-                                    <Border x:Name="RootBorder" Padding="10,15,10,15">
-                                        <ContentPresenter/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>
+    <Viewbox StretchDirection="Both" Stretch="Uniform">
+        <Border Height="29.7cm" Width="21cm" BorderBrush="Black" BorderThickness="1">
+            <Grid x:Name="grid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="50*"/>
+                    <RowDefinition Height="15*"/>
+                </Grid.RowDefinitions>
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
+                <DockPanel>
+                    <Image Source="{Binding Icon}" RenderOptions.BitmapScalingMode="HighQuality" Margin="50,0,0,0" DockPanel.Dock="Left" Width="100" Height="100"/>
+                    <TextBlock Margin="25,0,0,0" DockPanel.Dock="Left" Text="{Binding Name, FallbackValue=Bitcoin}" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" FontSize="50" FontFamily="Arial Black"/>
+                </DockPanel>
 
-                        <Border BorderThickness="1" BorderBrush="{Binding ElementName=page, Path=DataContext.Color, FallbackValue=Black}" CornerRadius="5">
-                            <TextBlock Margin="10" VerticalAlignment="Center" Width="148" Foreground="{Binding ElementName=page, Path=DataContext.Color}" FontSize="20" FontFamily="Arial Black">
+                <Rectangle Grid.Row="1" Fill="Black" Height="1" VerticalAlignment="Top"/>
+
+                <ListView Grid.Row="1" x:Name="listView" ItemsSource="{Binding Words}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10,0,10,0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}" BorderBrush="{x:Null}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                        <Border x:Name="RootBorder" Padding="10,15,10,15">
+                                            <ContentPresenter/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+
+                            <Border BorderThickness="1" BorderBrush="{Binding ElementName=page, Path=DataContext.Color, FallbackValue=Black}" CornerRadius="5">
+                                <TextBlock Margin="10" VerticalAlignment="Center" Width="148" Foreground="{Binding ElementName=page, Path=DataContext.Color}" FontSize="20" FontFamily="Arial Black">
                                     <Run Text="{Binding Number}"/><Run Text="."/>
                                     <Run Text="{Binding Word}"/>
-                            </TextBlock>
-                        </Border>
-                            
-                        
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                                </TextBlock>
+                            </Border>
 
-            </ListView>
 
-            <Rectangle Grid.Row="1" Fill="Black" Height="1" VerticalAlignment="Bottom"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-            <DockPanel Grid.Row="2">
-                <StackPanel Visibility="{Binding AddressIsSetted, Converter={StaticResource converter}}" Margin="50,0,0,0">
-                    <TextBlock TextAlignment="Center" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" Width="250" Height="55" MaxHeight="55" TextWrapping="Wrap" FontSize="25" FontFamily="Arial Black">
+                </ListView>
+
+                <Rectangle Grid.Row="1" Fill="Black" Height="1" VerticalAlignment="Bottom"/>
+
+                <DockPanel Grid.Row="2">
+                    <StackPanel Visibility="{Binding AddressIsSetted, Converter={StaticResource converter}}" Margin="50,0,0,0">
+                        <TextBlock TextAlignment="Center" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" Width="250" Height="55" MaxHeight="55" TextWrapping="Wrap" FontSize="25" FontFamily="Arial Black">
                         <Run Text="Address"/>
                         <LineBreak/>
                         <Run Text="{Binding Address}" FontSize="12"/>
-                    </TextBlock>
-                    <Image x:Name="qrAddress" Width="160" Height="160"/>
-                </StackPanel>
+                        </TextBlock>
+                        <Image x:Name="qrAddress" Width="160" Height="160"/>
+                    </StackPanel>
 
-                <StackPanel Visibility="{Binding GenerateQRForPhrase, Converter={StaticResource converter}}" Margin="0,0,50,0" HorizontalAlignment="Right">
-                    <TextBlock Text="Seed phrase" TextAlignment="Center" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" Width="250" Height="55" MaxHeight="55" FontSize="25" FontFamily="Arial Black"/>
-                    <Image x:Name="qrPhrase" Width="160" Height="160"/>
-                </StackPanel>
-                
-            </DockPanel>
-        </Grid>
-    </Border>
+                    <StackPanel Visibility="{Binding GenerateQRForPhrase, Converter={StaticResource converter}}" Margin="0,0,50,0" HorizontalAlignment="Right">
+                        <TextBlock Text="Seed phrase" TextAlignment="Center" Foreground="{Binding Color, FallbackValue= Gold}" VerticalAlignment="Center" Width="250" Height="55" MaxHeight="55" FontSize="25" FontFamily="Arial Black"/>
+                        <Image x:Name="qrPhrase" Width="160" Height="160"/>
+                    </StackPanel>
+
+                </DockPanel>
+            </Grid>
+        </Border>
+    </Viewbox>
 </Page>

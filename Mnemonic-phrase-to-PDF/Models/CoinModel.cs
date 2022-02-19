@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace Mnemonic_phrase_to_PDF.Models
@@ -22,8 +23,11 @@ namespace Mnemonic_phrase_to_PDF.Models
 
         private bool generateQRForPhrase;
 
+        private PageFormat selectedPageFormat;
 
         public List<WordModel> Words { get; set; } = new List<WordModel>();
+
+        public ObservableCollection<PageFormat> Formats { get; set; } = new ObservableCollection<PageFormat>();
 
         public string Name
         {
@@ -137,12 +141,40 @@ namespace Mnemonic_phrase_to_PDF.Models
             }
         }
 
+        public PageFormat SelectedPageFormat
+        {
+            get
+            {
+                return selectedPageFormat;
+            }
+            set
+            {
+                if (selectedPageFormat != value)
+                {
+                    selectedPageFormat = value;
+                    OnPropertyChanged("SelectedPageFormat");
+                }
+            }
+        }
+
         public bool AddressIsSetted => !string.IsNullOrWhiteSpace(Address);
 
 
         public CoinModel Clone()
         {
-            return new CoinModel() { Words = Words, WordCount = WordCount, Name = Name, Color = Color, Icon = Icon, GenerateQRForPhrase = GenerateQRForPhrase, GenerateQRForAddress = GenerateQRForAddress, Address = Address };
+            return new CoinModel() 
+            { 
+                Words = Words, 
+                WordCount = WordCount,
+                Name = Name,
+                Color = Color, 
+                Icon = Icon,
+                GenerateQRForPhrase = GenerateQRForPhrase,
+                GenerateQRForAddress = GenerateQRForAddress, 
+                Address = Address,
+                Formats = Formats,
+                SelectedPageFormat = SelectedPageFormat,
+            };
         }
 
         private void OnPropertyChanged(String info)

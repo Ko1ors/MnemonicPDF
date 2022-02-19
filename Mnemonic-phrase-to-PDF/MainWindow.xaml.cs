@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Mnemonic_phrase_to_PDF.Models;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -19,8 +20,17 @@ namespace Mnemonic_phrase_to_PDF
         {
             InitializeComponent();
             coinModel = Resources["coinModel"] as CoinModel;
+            SetPageFormats();
             window = new PDFPreviewWindow();
             window.Closing += Window_Closing;
+        }
+
+        private void SetPageFormats()
+        {
+            coinModel.Formats.Add(new PageFormat() { Name = "A4", Height = 29.7m, Width = 21m, Unit = "cm" });
+            coinModel.Formats.Add(new PageFormat() { Name = "10X15", Height = 15m, Width = 10m, Unit = "cm" });         
+            
+            coinModel.SelectedPageFormat = coinModel.Formats.FirstOrDefault();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -32,6 +42,7 @@ namespace Mnemonic_phrase_to_PDF
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+            Application.Current.Shutdown();
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -43,7 +54,7 @@ namespace Mnemonic_phrase_to_PDF
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "Select an icon";
-            dialog.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +"JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +"Portable Network Graphic (*.png)|*.png";
+            dialog.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" + "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" + "Portable Network Graphic (*.png)|*.png";
             if (dialog.ShowDialog() == true)
             {
                 coinModel.Icon = new Uri(dialog.FileName);
