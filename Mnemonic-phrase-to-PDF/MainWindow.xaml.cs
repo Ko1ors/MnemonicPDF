@@ -28,8 +28,8 @@ namespace Mnemonic_phrase_to_PDF
         private void SetPageFormats()
         {
             coinModel.Formats.Add(new PageFormat() { Name = "A4", Height = 29.7m, Width = 21m, Unit = "cm" });
-            coinModel.Formats.Add(new PageFormat() { Name = "10X15", Height = 15m, Width = 10m, Unit = "cm" });         
-            
+            coinModel.Formats.Add(new PageFormat() { Name = "10X15", Height = 15m, Width = 10m, Unit = "cm" });
+
             coinModel.SelectedPageFormat = coinModel.Formats.FirstOrDefault();
         }
 
@@ -78,6 +78,13 @@ namespace Mnemonic_phrase_to_PDF
                     coinModel.Words[i].Word = words[i];
                 }
             }
+        }
+
+        private void bipClick(object sender, RoutedEventArgs e)
+        {
+            var bips = Properties.Resources.bip.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            if (bips.Any())
+                coinModel.Words.Where(w => string.IsNullOrWhiteSpace(w.Word) || !bips.Contains(w.Word)).ToList().ForEach(w => w.IsBIPValid = false);
         }
 
         private void GeneratePDFClick(object sender, RoutedEventArgs e)

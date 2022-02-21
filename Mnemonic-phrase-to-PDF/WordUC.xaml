@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF" xmlns:models="clr-namespace:Mnemonic_phrase_to_PDF.Models"
+             xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF" xmlns:models="clr-namespace:Mnemonic_phrase_to_PDF.Models" d:DataContext="{d:DesignInstance Type=models:WordModel}"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="140">
     <UserControl.Resources>
@@ -11,6 +11,6 @@
     </UserControl.Resources>
     <StackPanel Orientation="Horizontal">
         <TextBlock Text="{Binding Number}" VerticalAlignment="Center" Width="25" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black"/>
-        <TextBox Text="{Binding Word}" Width="100" Margin="5" TextAlignment="Center" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="{x:Null}"/>
+        <TextBox Text="{Binding Word}" Width="100" Margin="5" TextAlignment="Center" BorderBrush="{Binding BorderBrush}" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="{x:Null}"/>
     </StackPanel>
 </UserControl>

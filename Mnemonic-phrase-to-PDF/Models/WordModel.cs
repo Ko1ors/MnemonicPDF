@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
+using System.Windows.Media;
 
 namespace Mnemonic_phrase_to_PDF.Models
 {
@@ -12,6 +11,8 @@ namespace Mnemonic_phrase_to_PDF.Models
         private int number;
 
         private string word;
+
+        private bool isBIPValid;
 
         public int Number
         {
@@ -41,11 +42,35 @@ namespace Mnemonic_phrase_to_PDF.Models
                 if (word != value)
                 {
                     word = value;
+              
                     OnPropertyChanged("Word");
+                    if (!IsBIPValid)
+                    {
+                        IsBIPValid = true;
+                        OnPropertyChanged("BorderBrush");
+                    }
                 }
             }
 
         }
+
+        public bool IsBIPValid
+        {
+            get 
+            {
+                return isBIPValid;
+            }
+            set 
+            {
+                if (isBIPValid != value)
+                {
+                    isBIPValid = value;
+                    OnPropertyChanged("BorderBrush");
+                }
+            }
+        }
+
+        public Brush BorderBrush => isBIPValid ? new SolidColorBrush(Colors.Gray) : new SolidColorBrush(Colors.Red);
 
         private void OnPropertyChanged(String info)
         {

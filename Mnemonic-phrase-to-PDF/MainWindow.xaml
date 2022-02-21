@@ -136,6 +136,7 @@
                                         <TextBox VerticalAlignment="Bottom" Margin="5" Width="200" Text="{Binding WordCount}" TextAlignment="Center" Foreground="{StaticResource TextBrush}" FontSize="18" FontFamily="Arial Black" Background="{x:Null}"/>
                                         <Button Content="✓" Click="Button_Click" Margin="5" Width="25" Height="25" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
                                         <Button Content="Paste" Click="PasteClick" Margin="5" Width="80" Height="25" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
+                                        <Button Content="Check BIP" Click="bipClick" Margin="5" Width="110" Height="25" Foreground="{StaticResource TextBrush}" FontSize="16" FontFamily="Arial Black" Background="#FF3B5274" BorderBrush="Black"/>
                                     </StackPanel>
                                     <ListView x:Name="listView" HorizontalAlignment="Center" ItemsSource="{Binding Words}" Grid.Row="2" Margin="12" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="{x:Null}">
                                         <ListBox.ItemsPanel>
