@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <RootNamespace>Mnemonic_phrase_to_PDF</RootNamespace>
+    <RootNamespace>MnemonicPDF</RootNamespace>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>images\icon.ico</ApplicationIcon>
   </PropertyGroup>
