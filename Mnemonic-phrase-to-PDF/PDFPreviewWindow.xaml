@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mnemonic_phrase_to_PDF"
         mc:Ignorable="d"
-        Title="PDFPreviewWindow" Height="450" Width="800">
+        Title="PDFPreviewWindow" Height="450" Width="800"
+        Icon="/images/icon.ico">
     <Grid>
         <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Frame x:Name="frame"/>
