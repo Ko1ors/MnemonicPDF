@@ -1,4 +1,4 @@
-﻿namespace Mnemonic_phrase_to_PDF.Models
+﻿namespace MnemonicPdf.Models
 {
     public class PageFormat
     {

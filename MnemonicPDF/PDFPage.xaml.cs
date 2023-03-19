@@ -1,4 +1,4 @@
-﻿using Mnemonic_phrase_to_PDF.Models;
+﻿using MnemonicPdf.Models;
 using QRCoder;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Mnemonic_phrase_to_PDF
+namespace MnemonicPdf
 {
     /// <summary>
     /// Interaction logic for PDFPage.xaml

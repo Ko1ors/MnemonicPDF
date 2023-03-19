@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Mnemonic_phrase_to_PDF
+namespace MnemonicPdf
 {
     /// <summary>
     /// Interaction logic for PDFPreviewWindow.xaml

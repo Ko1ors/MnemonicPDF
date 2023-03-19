@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-namespace Mnemonic_phrase_to_PDF.Converters
+namespace MnemonicPdf.Converters
 {
     public class BoolToVisibilityConverter : IValueConverter
     {

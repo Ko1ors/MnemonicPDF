@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Mnemonic_phrase_to_PDF.Converters
+namespace MnemonicPdf.Converters
 {
     [ValueConversion(typeof(string), typeof(double))]
     public class SizeConverter : IValueConverter

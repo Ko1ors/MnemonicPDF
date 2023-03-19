@@ -1,4 +1,4 @@
-﻿using Mnemonic_phrase_to_PDF.Models;
+﻿using MnemonicPdf.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Mnemonic_phrase_to_PDF
+namespace MnemonicPdf
 {
     /// <summary>
     /// Логика взаимодействия для WordUC.xaml

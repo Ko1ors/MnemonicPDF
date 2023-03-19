@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
-namespace Mnemonic_phrase_to_PDF.Models
+namespace MnemonicPdf.Models
 {
     public class CoinModel : INotifyPropertyChanged
     {

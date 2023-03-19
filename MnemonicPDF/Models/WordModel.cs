@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Media;
 
-namespace Mnemonic_phrase_to_PDF.Models
+namespace MnemonicPdf.Models
 {
     public class WordModel : INotifyPropertyChanged
     {

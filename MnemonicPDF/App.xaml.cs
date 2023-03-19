@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Mnemonic_phrase_to_PDF
+namespace MnemonicPdf
 {
     /// <summary>
     /// Interaction logic for App.xaml

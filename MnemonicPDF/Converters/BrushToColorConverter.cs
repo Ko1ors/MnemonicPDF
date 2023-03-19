@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Mnemonic_phrase_to_PDF.Converters
+namespace MnemonicPdf.Converters
 {
     public class BrushToColorConverter : IValueConverter
     {
